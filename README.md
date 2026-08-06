@@ -83,7 +83,7 @@ for the recognition view. Follow the review checklist in
 
 ## Technology stack
 
-Python 3.11–3.13, FastAPI, Jinja2, SQLAlchemy, SQLite, Argon2id, Pydantic Settings,
+Python 3.11, FastAPI, Jinja2, SQLAlchemy, SQLite, Argon2id, Pydantic Settings,
 InsightFace, ONNX Runtime, OpenCV, NumPy, Requests, pytest, Ruff, mypy, Docker, and GitHub
 Actions.
 
@@ -106,7 +106,7 @@ and virtual environments are intentionally ignored.
 
 ## Requirements
 
-- Python 3.11, 3.12, or 3.13 (64-bit recommended).
+- Python 3.11 (64-bit recommended).
 - A webcam only for live recognition; tests need no camera or model download.
 - Backend-only use does not require InsightFace, OpenCV, ONNX Runtime, or a GPU.
 - Recognition requires a separately obtained InsightFace-compatible model pack. The bundled
@@ -117,7 +117,7 @@ and virtual environments are intentionally ignored.
 Windows PowerShell:
 
 ```powershell
-py -3.12 -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install "pip>=26.1.2"
 python -m pip install -e ".[dev]"
@@ -133,7 +133,7 @@ If the Python launcher is unavailable, add `-BasePython C:\path\to\python.exe`.
 Linux/macOS:
 
 ```bash
-python3.12 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install 'pip>=26.1.2'
 python -m pip install -e '.[dev]'
