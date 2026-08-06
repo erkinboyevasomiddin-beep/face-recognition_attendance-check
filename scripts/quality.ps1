@@ -4,8 +4,14 @@ param([switch]$Fix)
 $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 $PythonPath = Join-Path $ProjectRoot ".venv\Scripts\python.exe"
+$VersionCheckPath = Join-Path $PSScriptRoot "check_python_version.py"
 if (-not (Test-Path $PythonPath)) {
     throw "Run scripts\bootstrap.ps1 first."
+}
+
+& $PythonPath $VersionCheckPath
+if ($LASTEXITCODE -ne 0) {
+    throw "Quality checks require Python 3.11."
 }
 
 function Invoke-PythonCommand {

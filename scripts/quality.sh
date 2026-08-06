@@ -6,6 +6,7 @@ script_dir="${BASH_SOURCE[0]%/*}"
 project_root="$(cd "$script_dir/.." && pwd -P)"
 source "$project_root/.venv/bin/activate"
 cd "$project_root"
+python scripts/check_python_version.py
 python -m ruff check .
 python -m ruff format --check .
 python -m mypy backend recognition

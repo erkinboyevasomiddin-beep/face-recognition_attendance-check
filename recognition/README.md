@@ -5,8 +5,11 @@ SQLite gallery. Enrollment metadata separates immutable `person_id` from `displa
 Webcam recognition uses per-face tracking and consecutive-hit confirmation, then sends an
 explicit `ENTRY` or `EXIT` recognition event through a bounded background queue.
 
+Use Python 3.11. Python 3.12 and newer are not supported by the verified InsightFace/NumPy
+stack; see [`docs/python-compatibility.md`](../docs/python-compatibility.md).
+
 ```powershell
-python -m pip install -e ".[recognition]"
+python -m pip install -c constraints-python311.txt -e ".[recognition]"
 python -m recognition.main --mode enroll
 python -m recognition.main --mode self-check
 python -m recognition.main --mode webcam --camera-index 0

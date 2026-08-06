@@ -5,6 +5,9 @@ role-based dashboard workflows. It uses `person_id` values, UTC timestamps, Asia
 display, Argon2id passwords, signed sessions, CSRF tokens, trusted hosts, explicit event
 semantics, and SQLite foreign-key/WAL settings.
 
+Python 3.11 is currently required for the project as a whole. Python 3.12 and newer are not
+supported by the verified face-recognition dependency stack.
+
 From the repository root:
 
 ```powershell

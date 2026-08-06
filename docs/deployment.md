@@ -3,12 +3,16 @@
 ## Local development
 
 Follow the root README, keep `ATTENDANCE_APP_ENV=development`, bind Uvicorn to localhost, and
-use a local ignored SQLite file. Do not expose the development server to an untrusted network.
+use Python 3.11 with a local ignored SQLite file. Python 3.12 and newer are not supported by
+the verified face-recognition dependency stack. Do not expose the development server to an
+untrusted network.
 
 ## Backend container
 
 The desktop camera client is intentionally not containerized because Windows webcam/UI and
 GPU passthrough would complicate the primary local workflow.
+
+The Dockerfile uses `python:3.11-slim`, matching the supported project interpreter.
 
 ```powershell
 python -m backend.scripts.setup_demo

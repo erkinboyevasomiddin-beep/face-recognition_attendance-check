@@ -22,7 +22,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: OS, Python version, CPU/GPU provider, and project commit.
+      description: OS, Python 3.11 patch version, CPU/GPU provider, and project commit.
     validations:
       required: true
   - type: textarea

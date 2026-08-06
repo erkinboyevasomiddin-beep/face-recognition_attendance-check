@@ -6,7 +6,8 @@ stable `person_id` identity model, explicit `ENTRY`/`EXIT` semantics, and synthe
 ## Development workflow
 
 1. Open an issue describing the concrete defect or scoped change.
-2. Create a branch and install `python -m pip install -e ".[dev]"`.
+2. Create a Python 3.11 virtual environment, then install
+   `python -m pip install -c constraints-python311.txt -e ".[dev]"`.
 3. Add deterministic tests that need no camera, GPU, model download, private secret, or real
    school/biometric data.
 4. Run `python -m ruff check .`, `python -m ruff format --check .`,
