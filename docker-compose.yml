@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: .
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      ATTENDANCE_APP_ENV: ${ATTENDANCE_APP_ENV:-development}
+      ATTENDANCE_DEBUG: "false"
+      ATTENDANCE_DATABASE_URL: sqlite:////app/backend/data/attendance.db
+      ATTENDANCE_TIMEZONE: Asia/Tashkent
+      ATTENDANCE_ALLOWED_HOSTS: '${ATTENDANCE_ALLOWED_HOSTS:-["localhost","127.0.0.1","backend"]}'
+      ATTENDANCE_PUBLIC_BASE_URL: ${ATTENDANCE_PUBLIC_BASE_URL:-http://127.0.0.1:8000}
+      ATTENDANCE_SESSION_SECRET: ${ATTENDANCE_SESSION_SECRET:?set ATTENDANCE_SESSION_SECRET in .env}
+      ATTENDANCE_SESSION_COOKIE_SECURE: ${ATTENDANCE_SESSION_COOKIE_SECURE:-false}
+      ATTENDANCE_API_INGEST_ENABLED: ${ATTENDANCE_API_INGEST_ENABLED:-false}
+      ATTENDANCE_API_INGEST_KEY: ${ATTENDANCE_API_INGEST_KEY:-}
+    volumes:
+      - attendance-data:/app/backend/data
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=2)"
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  attendance-data:

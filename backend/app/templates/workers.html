@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero-card compact">
+        <div>
+            <p class="eyebrow">Xodimlar</p>
+            <h3>Xodim toifalari bo'yicha davomat</h3>
+            <p class="muted">Istalgan toifani ochib, qidiriladigan xodimlar ro'yxati va bugungi holatini ko'ring.</p>
+        </div>
+        <div class="mini-summary">
+            <div><span>Keldi</span><strong>{{ overview.worker_counts.present }}</strong></div>
+            <div><span>Kech qoldi</span><strong>{{ overview.worker_counts.late }}</strong></div>
+            <div><span>Kelmadi</span><strong>{{ overview.worker_counts.absent }}</strong></div>
+        </div>
+    </section>
+
+    <section class="card-grid">
+        {% for category in categories %}
+            <a href="/director/workers/category/{{ category.id }}" class="entity-card">
+                <div class="entity-card-header">
+                    <h4>{{ category.name }}</h4>
+                    <span class="caps">{{ category.total_workers }} nafar xodim</span>
+                </div>
+                <div class="entity-stats">
+                    <div class="pill-row">
+                        <span class="status-pill status-present">Keldi</span>
+                        <strong>{{ category.counts.present }}</strong>
+                    </div>
+                    <div class="pill-row">
+                        <span class="status-pill status-late">Kech qoldi</span>
+                        <strong>{{ category.counts.late }}</strong>
+                    </div>
+                    <div class="pill-row">
+                        <span class="status-pill status-absent">Kelmadi</span>
+                        <strong>{{ category.counts.absent }}</strong>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+{% endblock %}

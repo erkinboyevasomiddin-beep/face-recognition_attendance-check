@@ -1,0 +1,1 @@
+"""Local recognition client package."""

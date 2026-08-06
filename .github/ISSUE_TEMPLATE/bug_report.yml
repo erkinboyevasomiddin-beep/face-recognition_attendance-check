@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a reproducible defect using synthetic data only.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Do not include real names, faces, embeddings, databases, credentials, or private URLs. Use private vulnerability reporting for security issues.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Synthetic reproduction
+      description: Include minimal commands/data and remove sensitive values.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, CPU/GPU provider, and project commit.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs

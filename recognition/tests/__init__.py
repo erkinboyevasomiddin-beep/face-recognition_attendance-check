@@ -1,0 +1,1 @@
+"""Recognition test suite."""

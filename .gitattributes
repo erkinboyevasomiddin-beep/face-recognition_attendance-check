@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.db binary
+*.jpeg binary
+*.jpg binary
+*.onnx binary
+*.png binary
+*.sqlite binary
+*.sqlite3 binary

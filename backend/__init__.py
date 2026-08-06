@@ -1,0 +1,1 @@
+"""FastAPI attendance backend package."""

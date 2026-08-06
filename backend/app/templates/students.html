@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero-card compact">
+        <div>
+            <p class="eyebrow">O'quvchilar</p>
+            <h3>Barcha sinflar bosqich bo'yicha guruhlangan</h3>
+            <p class="muted">Istalgan sinfni ochib, to'liq o'quvchilar ro'yxati va bugungi holatni ko'ring.</p>
+        </div>
+        <div class="mini-summary">
+            <div><span>Keldi</span><strong>{{ overview.student_counts.present }}</strong></div>
+            <div><span>Kech qoldi</span><strong>{{ overview.student_counts.late }}</strong></div>
+            <div><span>Kelmadi</span><strong>{{ overview.student_counts.absent }}</strong></div>
+        </div>
+    </section>
+
+    {% for grade, classes in grade_groups.items() %}
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">{{ grade }}-sinf</p>
+                    <h3>{{ classes|length }} ta sinf</h3>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                {% for class_card in classes %}
+                    <a href="/director/students/class/{{ class_card.id }}" class="entity-card">
+                        <div class="entity-card-header">
+                            <h4>{{ class_card.name }}</h4>
+                            <span class="caps">{{ class_card.total_students }} nafar o'quvchi</span>
+                        </div>
+                        <div class="entity-stats">
+                            <div class="pill-row">
+                                <span class="status-pill status-present">Keldi</span>
+                                <strong>{{ class_card.counts.present }}</strong>
+                            </div>
+                            <div class="pill-row">
+                                <span class="status-pill status-late">Kech qoldi</span>
+                                <strong>{{ class_card.counts.late }}</strong>
+                            </div>
+                            <div class="pill-row">
+                                <span class="status-pill status-absent">Kelmadi</span>
+                                <strong>{{ class_card.counts.absent }}</strong>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+{% endblock %}

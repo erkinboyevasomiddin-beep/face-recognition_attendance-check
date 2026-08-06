@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="220" viewBox="0 0 1200 220" role="img" aria-labelledby="title desc">
+  <title id="title">School Attendance AI architecture</title>
+  <desc id="desc">Camera frames pass through face detection, embedding matching, tracking, a bounded queue, an authenticated API, attendance policy, database, and dashboards.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#315b7d"/>
+    </marker>
+    <style>
+      .box { fill: #f7fafc; stroke: #315b7d; stroke-width: 2; rx: 8; }
+      .label { font: 15px system-ui, sans-serif; fill: #182b3a; text-anchor: middle; }
+      .arrow { stroke: #315b7d; stroke-width: 2; marker-end: url(#arrow); }
+      .note { font: 13px system-ui, sans-serif; fill: #4a6070; text-anchor: middle; }
+    </style>
+  </defs>
+  <g>
+    <rect class="box" x="20" y="70" width="100" height="56"/><text class="label" x="70" y="103">Camera</text>
+    <rect class="box" x="150" y="70" width="120" height="56"/><text class="label" x="210" y="95">Detector +</text><text class="label" x="210" y="114">embedding</text>
+    <rect class="box" x="300" y="70" width="120" height="56"/><text class="label" x="360" y="95">Gallery +</text><text class="label" x="360" y="114">cosine match</text>
+    <rect class="box" x="450" y="70" width="120" height="56"/><text class="label" x="510" y="95">Tracking +</text><text class="label" x="510" y="114">confirmation</text>
+    <rect class="box" x="600" y="70" width="110" height="56"/><text class="label" x="655" y="95">Bounded</text><text class="label" x="655" y="114">queue</text>
+    <rect class="box" x="740" y="70" width="110" height="56"/><text class="label" x="795" y="95">Authenticated</text><text class="label" x="795" y="114">API</text>
+    <rect class="box" x="880" y="70" width="110" height="56"/><text class="label" x="935" y="95">Attendance</text><text class="label" x="935" y="114">policy</text>
+    <rect class="box" x="1020" y="20" width="150" height="56"/><text class="label" x="1095" y="53">SQLite database</text>
+    <rect class="box" x="1020" y="120" width="150" height="56"/><text class="label" x="1095" y="145">Teacher/director</text><text class="label" x="1095" y="164">dashboard</text>
+    <path class="arrow" d="M120 98 H145"/><path class="arrow" d="M270 98 H295"/><path class="arrow" d="M420 98 H445"/><path class="arrow" d="M570 98 H595"/><path class="arrow" d="M710 98 H735"/><path class="arrow" d="M850 98 H875"/><path class="arrow" d="M990 98 H1008 V48 H1015"/><path class="arrow" d="M1095 76 V115"/>
+    <text class="note" x="600" y="205">Biometric data stays local; only confirmed stable-ID events cross the API boundary.</text>
+  </g>
+</svg>

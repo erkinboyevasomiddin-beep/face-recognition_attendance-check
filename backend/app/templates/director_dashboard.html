@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero-card">
+        <div>
+            <p class="eyebrow">Direktor uchun umumiy ko'rinish</p>
+            <h3>{{ format_ui_date(overview.today) }} holatiga davomat ko'rinishi</h3>
+            <p class="muted">
+                Maktab bo'yicha umumiy holatni ko'ring, so'ng sinflar yoki xodimlar toifalariga o'tib batafsil ma'lumotni oching.
+            </p>
+        </div>
+        <div class="hero-actions">
+            <a href="/director/students" class="button button-primary">O'quvchilarni ochish</a>
+            <a href="/director/workers" class="button button-secondary">Xodimlarni ochish</a>
+            <a href="/director/events" class="button button-secondary">Hodisalar jurnalini ochish</a>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <p class="stat-label">O'quvchilar</p>
+            <h3>{{ overview.totals.students }}</h3>
+            <p class="muted">Barcha sinflar bo'yicha</p>
+        </article>
+        <article class="stat-card">
+            <p class="stat-label">Sinflar</p>
+            <h3>{{ overview.totals.classes }}</h3>
+            <p class="muted">5-sinfdan 11-sinfgacha</p>
+        </article>
+        <article class="stat-card">
+            <p class="stat-label">Xodimlar</p>
+            <h3>{{ overview.totals.workers }}</h3>
+            <p class="muted">Maktabdagi barcha xodim toifalari</p>
+        </article>
+    </section>
+
+    <section class="two-column-grid">
+        <article class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Bugungi o'quvchilar</p>
+                    <h3>Davomat taqsimoti</h3>
+                </div>
+                <a href="/director/students" class="text-link">Sinflarni ko'rish</a>
+            </div>
+            <div class="status-summary-grid">
+                <div class="status-summary present">
+                    <span>Keldi</span>
+                    <strong>{{ overview.student_counts.present }}</strong>
+                </div>
+                <div class="status-summary late">
+                    <span>Kech qoldi</span>
+                    <strong>{{ overview.student_counts.late }}</strong>
+                </div>
+                <div class="status-summary absent">
+                    <span>Kelmadi</span>
+                    <strong>{{ overview.student_counts.absent }}</strong>
+                </div>
+            </div>
+        </article>
+
+        <article class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Bugungi xodimlar</p>
+                    <h3>Davomat taqsimoti</h3>
+                </div>
+                <a href="/director/workers" class="text-link">Toifalarni ko'rish</a>
+            </div>
+            <div class="status-summary-grid">
+                <div class="status-summary present">
+                    <span>Keldi</span>
+                    <strong>{{ overview.worker_counts.present }}</strong>
+                </div>
+                <div class="status-summary late">
+                    <span>Kech qoldi</span>
+                    <strong>{{ overview.worker_counts.late }}</strong>
+                </div>
+                <div class="status-summary absent">
+                    <span>Kelmadi</span>
+                    <strong>{{ overview.worker_counts.absent }}</strong>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section class="section-grid">
+        <article class="section-card">
+            <p class="eyebrow">O'quvchilar bo'limi</p>
+            <h3>Sinflar va sinf kesimidagi davomat</h3>
+            <p class="muted">
+                Sinf guruhlarini ko'ring, istalgan sinfni oching va davomat belgilariga ega qidiriladigan o'quvchilar ro'yxatini tekshiring.
+            </p>
+            <a href="/director/students" class="button button-primary">O'quvchilar bo'limiga o'tish</a>
+        </article>
+
+        <article class="section-card">
+            <p class="eyebrow">Xodimlar bo'limi</p>
+            <h3>Xodim toifalari bo'yicha bugungi holat</h3>
+            <p class="muted">
+                O'qituvchilar, texnik xodimlar, tozalik xodimlari va oshxona xodimlarini toifalar kesimida kuzating.
+            </p>
+            <a href="/director/workers" class="button button-primary">Xodimlar bo'limiga o'tish</a>
+        </article>
+
+        <article class="section-card">
+            <p class="eyebrow">Face Recognition hodisalari</p>
+            <h3>Tanish tarixini ko'rish va tekshirish</h3>
+            <p class="muted">
+                API orqali kelgan tanish hodisalarini, mos tushgan o'quvchilarni va unmatched yozuvlarni bitta jurnal ichida ko'ring.
+            </p>
+            <a href="/director/events" class="button button-primary">Hodisalar jurnaliga o'tish</a>
+        </article>
+    </section>
+{% endblock %}

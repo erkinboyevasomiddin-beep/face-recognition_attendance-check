@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero-card compact">
+        <div>
+            <a href="/director/students" class="text-link">O'quvchilarga qaytish</a>
+            <p class="eyebrow">Sinf tafsiloti</p>
+            <h3>{{ detail.school_class.name }}</h3>
+            <p class="muted">{{ format_ui_date(detail.today) }} holatiga davomat</p>
+        </div>
+        <div class="mini-summary">
+            <div><span>Jami</span><strong>{{ detail.summary.total_students }}</strong></div>
+            <div><span>Keldi</span><strong>{{ detail.summary.present }}</strong></div>
+            <div><span>Kech qoldi</span><strong>{{ detail.summary.late }}</strong></div>
+            <div><span>Kelmadi</span><strong>{{ detail.summary.absent }}</strong></div>
+        </div>
+    </section>
+
+    <section class="panel" data-filter-root>
+        <div class="panel-header panel-header-stack">
+            <div>
+                <p class="eyebrow">O'quvchilar ro'yxati</p>
+                <h3>Qidiriladigan ro'yxat</h3>
+            </div>
+            <label class="search-field">
+                <span>O'quvchilarni qidirish</span>
+                <input type="search" placeholder="To'liq ism bo'yicha qidiring" data-filter-input>
+            </label>
+        </div>
+
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>To'liq ism</th>
+                        <th>Holati</th>
+                        <th>Izoh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in detail.students %}
+                        <tr data-filter-item data-filter-text="{{ student.full_name|lower }}">
+                            <td>{{ student.full_name }}</td>
+                            <td>
+                                <span class="status-pill status-{{ student.status }}">{{ status_label(student.status) }}</span>
+                            </td>
+                            <td>{{ student.note or "Izoh yo'q" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="empty-state hidden" data-filter-empty>Bu qidiruv bo'yicha o'quvchi topilmadi.</p>
+        </div>
+    </section>
+{% endblock %}

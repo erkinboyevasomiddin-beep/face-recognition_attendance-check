@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }} | Maktab davomat tizimi</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+</head>
+<body class="app-body">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand-block">
+                <p class="eyebrow">Maktab davomati</p>
+                <h1>Davomat nazorati</h1>
+                <p class="muted">
+                    O'quvchilar va maktab xodimlari uchun kundalik davomat ko'rinishi.
+                </p>
+            </div>
+
+            <nav class="nav-links">
+                {% if current_user.role.value == 'director' %}
+                    <a href="/director" class="nav-link {% if active_section == 'overview' %}active{% endif %}">Umumiy ma'lumot</a>
+                    <a href="/director/students" class="nav-link {% if active_section == 'students' %}active{% endif %}">O'quvchilar</a>
+                    <a href="/director/workers" class="nav-link {% if active_section == 'workers' %}active{% endif %}">Xodimlar</a>
+                    <a href="/director/events" class="nav-link {% if active_section == 'events' %}active{% endif %}">Hodisalar</a>
+                {% else %}
+                    <a href="/teacher" class="nav-link {% if active_section == 'teacher' %}active{% endif %}">O'qituvchi</a>
+                {% endif %}
+            </nav>
+
+            <div class="sidebar-footer">
+                <div>
+                    <p class="user-name">{{ current_user.full_name }}</p>
+                    <p class="muted caps">{{ role_label(current_user.role.value) }}</p>
+                </div>
+                <form method="post" action="/logout">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token(request) }}">
+                    <button type="submit" class="button button-secondary full-width">Chiqish</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Davomat boshqaruvi</p>
+                    <h2>{{ page_title }}</h2>
+                </div>
+                <div class="topbar-chip">
+                    <span class="dot"></span>
+                    Mahalliy demo rejimi
+                </div>
+            </header>
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', path='js/search.js') }}" defer></script>
+</body>
+</html>

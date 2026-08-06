@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero-card compact">
+        <div>
+            <p class="eyebrow">Face Recognition hodisalari</p>
+            <h3>API orqali kelgan tanish tarixchasi</h3>
+            <p class="muted">
+                Mos tushgan va mos kelmagan tanish hodisalari shu yerda saqlanadi.
+            </p>
+        </div>
+        <div class="mini-summary">
+            <div><span>Jami</span><strong>{{ summary.total }}</strong></div>
+            <div><span>Mos tushdi</span><strong>{{ summary.matched }}</strong></div>
+            <div><span>Mos kelmadi</span><strong>{{ summary.unmatched }}</strong></div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <p class="eyebrow">Hodisalar jurnali</p>
+                <h3>So'nggi tanish hodisalari</h3>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Vaqt</th>
+                        <th>Payload ismi</th>
+                        <th>Sinf</th>
+                        <th>Holat</th>
+                        <th>O'xshashlik</th>
+                        <th>Manba</th>
+                        <th>Moslik</th>
+                        <th>Mos kelgan shaxs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if events %}
+                        {% for event in events %}
+                            <tr>
+                                <td>{{ format_ui_datetime(event.timestamp) }}</td>
+                                <td>{{ event.person_name }}</td>
+                                <td>{{ event.class_name or "-" }}</td>
+                                <td>{{ recognition_status_label(event.status) }}</td>
+                                <td>
+                                    {% if event.similarity is not none %}
+                                        {{ "%.2f"|format(event.similarity) }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>{{ event.source or "-" }}</td>
+                                <td>
+                                    {% if event.matched %}
+                                        <span class="status-pill status-present">Mos tushdi</span>
+                                    {% else %}
+                                        <span class="status-pill status-absent">Mos kelmadi</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ event.matched_person_name or "Topilmadi" }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="8">Hozircha tanish hodisalari yo'q.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

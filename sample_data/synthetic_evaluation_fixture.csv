@@ -1,0 +1,5 @@
+same_person,similarity,inference_ms,end_to_end_ms
+true,0.90,10.0,15.0
+true,0.40,20.0,25.0
+false,0.80,10.0,15.0
+false,0.20,20.0,25.0
